@@ -22,3 +22,15 @@ Set up by Ben Awad and tweaked for betterment:
     "stage-0"
   ]
 }
+
+For full-stack setting;
+set scripts like this,
+  "scripts": {
+    "client-install": "yarn install --prefix client",
+    "start": "nodemon --exec babel-node server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm start\" \"npm run client\""
+  },
+
+  "client-install",
+  when it's cloned down, this enable install the package in client folder
