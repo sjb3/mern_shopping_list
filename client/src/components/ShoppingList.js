@@ -40,7 +40,7 @@ class ShoppingList extends Component {
             {items.map((({id, name, URI, desc}) => (
               <CSSTransition key={id} timeout={500} classNames='fade'>
                 <ListGroupItem>
-                  <img style={{borderRadius: '50%', width: '50px', height: '50px'}} src={URI} />
+                  <img alt='avatar' style={{borderRadius: '50%', width: '50px', height: '50px'}} src={URI} />
                   <hr />
                   {name}
                   <p>{desc}</p>
