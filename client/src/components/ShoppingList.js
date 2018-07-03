@@ -4,55 +4,64 @@ import {
 } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import uuid from 'uuid';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getItems } from '../actions/itemActions';
 
 class ShoppingList extends Component {
-  state = {
-    items: [
-      {id: uuid(), desc:'"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', name: 'Dior Suit', URI: 'http://ftape.com/media/wp-content/uploads/2013/09/Dior-Homme-FW13-Suit.jpg'},
-      {id: uuid(), desc:'"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', name: 'Givenchy Jacket', URI: 'https://monetanddolce.files.wordpress.com/2012/12/givenchy-haute-couture-2010-fall-winter.jpg'},
-      {id: uuid(), desc:'"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', name: 'Chanel Suit', URI: 'https://totallist.files.wordpress.com/2013/01/chanel-suit.jpg'},
-      {id: uuid(), desc:'"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', name: 'Margiela Coat', URI: 'https://a.1stdibscdn.com/archivesE/upload/v_1402/21_15/img_9187/IMG_9187_l.jpeg'},
-    ]
+  componentDidMount() {
+    this.props.getItems();
   }
 
   render() {
-    const {items} = this.state;
+    // this.props.item.items;
+    const { items } = this.props.item;
 
     // Later will be updated with REDUX
     return (
       <Container>
         <Button
-          color='dark'
-          style={{marginBottom: '2rem'}}
+          color="dark"
+          style={{ marginBottom: '2rem' }}
           onClick={() => {
             const name = prompt('Enter Item');
-            const img = prompt('Image URL please')
+            const img = prompt('Image URL please');
 
-            if(name && img){
+            if (name && img) {
               this.setState(state => ({
-                items: [...state.items, { id: uuid(), name, URI: img }]
+                items: [...state.items, { id: uuid(), name, URI: img }],
               }));
             }
           }}
-        >Add Item</Button>
+        >
+Add Item
+
+        </Button>
         <ListGroup>
-          <TransitionGroup className='shopping-list'>
-            {items.map((({id, name, URI, desc}) => (
-              <CSSTransition key={id} timeout={500} classNames='fade'>
+          <TransitionGroup className="shopping-list">
+            {items.map((({
+              id, name, URI, desc,
+            }) => (
+              <CSSTransition key={id} timeout={500} classNames="fade">
                 <ListGroupItem>
-                  <img alt='avatar' style={{borderRadius: '50%', width: '50px', height: '50px'}} src={URI} />
+                  <img alt="avatar" style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={URI} />
                   <hr />
                   {name}
-                  <p>{desc}</p>
+                  <p>
+                    {desc}
+                  </p>
                   <Button
-                    style={{alignContent: 'right'}}
-                    className='remove-btn'
-                    color='danger'
-                    size='sm'
+                    style={{ alignContent: 'right' }}
+                    className="remove-btn"
+                    color="danger"
+                    size="sm"
                     onClick={() => {
-                      this.setState(state => ({items: state.items.filter(item => item.id !== id)}))
+                      this.setState(state => ({ items: state.items.filter(item => item.id !== id) }));
                     }}
-                  >&times;</Button>
+                  >
+&times;
+
+                  </Button>
                 </ListGroupItem>
               </CSSTransition>
             )))}
@@ -63,5 +72,13 @@ class ShoppingList extends Component {
   }
 }
 
+ShoppingList.prototypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
+};
 
-export default ShoppingList;
+const mapStateToProps = state => ({
+  item: state.item,
+});
+
+export default connect(mapStateToProps, { getItems })(ShoppingList);
