@@ -24,23 +24,6 @@ class ShoppingList extends Component {
     // Later will be updated with REDUX
     return (
       <Container>
-        {/* <Button
-          color="dark"
-          style={{ marginBottom: '2rem' }}
-          onClick={() => {
-            const name = prompt('Enter Item');
-            const img = prompt('Image URL please');
-
-            if (name && img) {
-              this.setState(state => ({
-                items: [...state.items, { id: uuid(), name, URI: img }],
-              }));
-            }
-          }}
-        >
-Add Item
-
-        </Button> */}
         <ListGroup>
           <TransitionGroup className="shopping-list">
             {items.map((({

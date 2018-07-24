@@ -10,6 +10,7 @@ class ItemModal extends Component {
   state = {
     modal: false,
     name: '',
+    desc: '',
     URI: ''
   }
 
@@ -21,16 +22,17 @@ class ItemModal extends Component {
 
   onChange = (e) => {
     // this.setState(e.target.value)
-    this.setState({[e.target.name]: e.target.value, [e.target.URI]: e.target.value})
+    this.setState({[e.target.name]: e.target.value, [e.target.desc]: e.target.value})
   }
 
   onSubmit = (e) => {
     e.preventDefault();
 
     const newItem = {
-      id: uuid(),
+      id: uuid(), // later backend is hooked this uuid won't be needed
       name: this.state.name,
-      URI: this.state.URI
+      desc: this.state.desc,
+      // URI: this.state.URI
     }
     // Add item via AddItem action
     this.props.addItems(newItem);
@@ -41,7 +43,6 @@ class ItemModal extends Component {
   }
 
   render() {
-
     return (
       <div>
       <Button
@@ -53,8 +54,7 @@ class ItemModal extends Component {
         isOpen={this.state.modal}
         toggle={this.toggle}
       >
-        <ModalHeader toggle={this.toggle}>Add To Shopping List
-        </ModalHeader>
+        <ModalHeader toggle={this.toggle}>Add To Shopping List</ModalHeader>
         <ModalBody>
           <Form onSubmit={this.onSubmit}>
             <FormGroup>
@@ -66,12 +66,12 @@ class ItemModal extends Component {
                 placeholder='Add Shopping Item'
                 onChange={this.onChange}
               />
-              <Label for='image'>Image Address</Label>
+              <Label for='desc'>Descriptions</Label>
               <Input
                 type='text'
-                URI='URI'
+                desc='desc'
                 id='item'
-                placeholder='Aditional Image Info'
+                placeholder='Additional Item Info'
                 onChange={this.onChange}
               />
 
