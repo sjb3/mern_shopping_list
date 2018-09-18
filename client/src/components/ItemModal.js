@@ -4,14 +4,13 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItems } from '../actions/itemActions';
-import uuid from 'uuid';
 
 class ItemModal extends Component {
   state = {
     modal: false,
     name: '',
-    desc: '',
-    URI: ''
+    // desc: '',
+    // URI: ''
   }
 
   toggle = () => {
@@ -29,7 +28,7 @@ class ItemModal extends Component {
     e.preventDefault();
 
     const newItem = {
-      id: uuid(), // later backend is hooked this uuid won't be needed
+      //id: uuid(), // later backend is hooked this uuid won't be needed
       name: this.state.name,
       desc: this.state.desc,
       // URI: this.state.URI

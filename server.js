@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 
 const items = require('./routes/api/items');
 
-const PORT = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 const app = express();
 // bodyParser/jsonParser
@@ -25,6 +25,6 @@ mongoose
 // Use Routes
 app.use('/api/items', items);
 
-app.listen(PORT, () => {
+app.listen(port, () => {
   console.log(`>>>>> Server up n running port: ${PORT}`);
 });
