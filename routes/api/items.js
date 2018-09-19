@@ -16,6 +16,16 @@ router.get('/', (req, res) => {
     });
 });
 
+// @route GET api/items
+// @desc GET THE Items
+// @access Public
+// router.get('/:id', (req, res) => {
+//   Item.findById(req.params.id)
+//     .then((items) => {
+//       res.json(items);
+//     });
+// });
+
 // @route POST api/items
 // @desc Create an Item
 // @access Public
@@ -34,7 +44,7 @@ router.post('/', (req, res) => {
 router.delete('/:id', (req, res) => {
   Item.findById(req.params.id)
     .then((item) => {
-      item.remove().then(() => res.json({ success: true }));
+      item.remove().then(() => res.status(200).json({ success: true }));
     })
     .catch(err => res.status(404).json({ success: false }));
 });

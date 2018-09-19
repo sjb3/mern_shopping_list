@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 import {
-  GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING,
+  GET_ITEMS,
+  ADD_ITEMS,
+  DELETE_ITEMS,
+  ITEMS_LOADING,
 } from './types';
 
 export const getItems = () => (dispatch) => {
