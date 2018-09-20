@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import {
-  Container, ListGroup, ListGroupItem, Button,
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Button,
 } from 'reactstrap';
+
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-// import uuid from 'uuid';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getItems, deleteItems } from '../actions/itemActions';
 
 class ShoppingList extends Component {
+  // state = {
+  //   items: [
+  //     {id: uuid(), name: 'Chanel'},
+  //     {id: uuid(), name: 'Versace'},
+  //     {id: uuid(), name: 'Gucci'},
+  //   ]
+  // }
   componentDidMount() {
     this.props.getItems();
   }
@@ -27,22 +37,22 @@ class ShoppingList extends Component {
         <ListGroup>
           <TransitionGroup className="shopping-list">
             {items.map((({
-              id, name, URI, desc,
+              _id, name
             }) => (
-              <CSSTransition key={id} timeout={500} classNames="fade">
+              <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
-                  <img alt="avatar" style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={URI} />
-                  <hr />
+                  {/* <img alt="avatar" style={{ borderRadius: '50%', width: '50px', height: '50px' }} src={URI} />
+                  <hr /> */}
                   {name}
-                  <p>
-                    {desc}
-                  </p>
+                  {/* <p> */}
+
+                  {/* </p> */}
                   <Button
                     style={{ alignContent: 'right' }}
                     className="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={this.onDeleteClick.bind(this, id)}
+                    onClick={this.onDeleteClick.bind(this, _id)}
                   >
 &times;
 

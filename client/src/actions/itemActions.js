@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 import {
-  GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING,
+  GET_ITEMS,
+  ADD_ITEMS,
+  DELETE_ITEMS,
+  ITEMS_LOADING,
 } from './types';
 
 export const getItems = () => (dispatch) => {
@@ -14,10 +17,14 @@ export const getItems = () => (dispatch) => {
     }));
 };
 
-export const deleteItems = id => ({
-  type: DELETE_ITEMS,
-  payload: id,
-});
+export const deleteItems = id => (dispatch) => {
+  axios
+    .delete(`/api/items/${id}`)
+    .then(res => dispatch({
+      type: DELETE_ITEMS,
+      payload: id,
+    }));
+};
 
 export const addItems = item => (dispatch) => {
   axios

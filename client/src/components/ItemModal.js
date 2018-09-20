@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addItems } from '../actions/itemActions';
@@ -16,12 +23,12 @@ class ItemModal extends Component {
   toggle = () => {
     this.setState({
       modal: !this.state.modal
-    })
+    });
   }
 
   onChange = (e) => {
     // this.setState(e.target.value)
-    this.setState({[e.target.name]: e.target.value, [e.target.desc]: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   onSubmit = (e) => {
@@ -30,7 +37,7 @@ class ItemModal extends Component {
     const newItem = {
       //id: uuid(), // later backend is hooked this uuid won't be needed
       name: this.state.name,
-      desc: this.state.desc,
+      // desc: this.state.desc,
       // URI: this.state.URI
     }
     // Add item via AddItem action
@@ -65,14 +72,14 @@ class ItemModal extends Component {
                 placeholder='Add Shopping Item'
                 onChange={this.onChange}
               />
-              <Label for='desc'>Descriptions</Label>
+              {/* <Label for='desc'>Descriptions</Label>
               <Input
                 type='text'
                 desc='desc'
                 id='item'
                 placeholder='Additional Item Info'
                 onChange={this.onChange}
-              />
+              /> */}
 
               <Button
                 color='dark'

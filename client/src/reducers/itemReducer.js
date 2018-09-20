@@ -3,8 +3,13 @@
 // eventually these coming from the back-end
 
 import {
-  GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING,
+  GET_ITEMS,
+  ADD_ITEMS,
+  DELETE_ITEMS,
+  ITEMS_LOADING
+  ,
 } from '../actions/types';
+
 
 const initialState = {
   items: [],
@@ -36,7 +41,7 @@ export default function (state = initialState, action) {
     case DELETE_ITEMS:
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload),
+        items: state.items.filter(item => item._id !== action.payload),
       };
     case ADD_ITEMS:
       return {

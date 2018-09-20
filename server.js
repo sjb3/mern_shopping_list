@@ -26,5 +26,5 @@ mongoose
 app.use('/api/items', items);
 
 app.listen(port, () => {
-  console.log(`>>>>> Server up n running port: ${PORT}`);
+  console.log(`>>>>> Server up n running port: ${port}`);
 });
